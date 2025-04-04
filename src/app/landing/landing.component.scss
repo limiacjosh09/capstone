@@ -1,0 +1,228 @@
+@import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+:host {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: #FFE2AD;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+
+.letters {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80%;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr); 
+  grid-auto-rows: 1fr; 
+  justify-items: center;
+  align-items: center;
+  pointer-events: none;
+  opacity: 0.2;
+  font-size: clamp(16px, 6vw, 100px);
+  font-weight: 900;
+  font-family: 'Itim', cursive; 
+  color: rgb(0, 18, 25);
+  z-index: 0;
+}
+.title-container {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  font-family: 'Indie Flower';
+  font-size: 15vw !important;
+  color: #BB3E03;
+  cursor: default;
+  user-select: none; 
+  -webkit-user-select: none; 
+  -moz-user-select: none; 
+  -ms-user-select: none; 
+}
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  z-index: 2;
+}
+.button-play-button,
+.button-about-button,
+.button-how-to-play-button {
+  width: 100%;
+  max-width: 300px;
+  padding: 1rem;
+  margin: 1rem;
+  background: #AE2012;
+  border-radius: 10px;
+  font-family: 'Passion One', sans-serif;
+  font-size: 36px;
+  font-weight: 500;
+  color: white;
+  text-align: center;
+  cursor: pointer;
+  z-index: 3;
+  letter-spacing: 2px;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+.button-play-button:hover,
+.button-about-button:hover,
+.button-how-to-play-button:hover {
+  transform: scale(1.05);
+  background-color: #9C1E10;
+}
+
+.floating-box {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: clamp(30px, 8vw, 80px);
+  height: clamp(30px, 8vw, 80px);
+  border-radius: 16px;
+  font-family: 'Itim', cursive;
+  font-size: clamp(16px, 4vw, 50px);
+  font-weight: 900;
+  color: #FFFFFF;
+  z-index: 1;
+  background-color: #BB3E03;
+  transform: rotate(-22.56deg);
+  animation: float 3s ease-in-out infinite;
+  will-change: transform;
+}
+@keyframes float {
+  0% {
+    transform: translateY(0) rotate(-22.56deg);
+  }
+  50% {
+    transform: translateY(-15px) rotate(-22.56deg);
+  }
+  100% {
+    transform: translateY(0) rotate(-22.56deg);
+  }
+}
+
+.floating-l-left { top: 15%; left: 5%; }
+.floating-b-left { top: 25%; left: 15%; }
+.floating-k-left { top: 35%; left: 4%; }
+.floating-bb-left { top: 50%; left: 10%; }
+.floating-h-left { top: 65%; left: 3%; }
+.floating-g-left { top: 75%; left: 12%; }
+
+.floating-l-right { top: 20%; right: 5%; left: auto; }
+.floating-ll-right { top: 40%; right: 10%; left: auto; }
+.floating-d-right { top: 35%; right: 2%; left: auto; }
+.floating-f-right { top: 60%; right: 7%; left: auto; }
+.floating-o-right { top: 70%; right: 15%; left: auto; }
+.floating-k-right { top: 80%; right: 3%; left: auto; }
+
+@media (min-width: 768px) {
+  .title-container {
+    font-size: max(15vw, 20px); /* Panatilihin ang normal na laki */
+  }
+
+}
+
+@media (max-width: 767px) {
+
+  :host{
+    height: 95vh;
+  }
+  .title-container {
+    font-size: 20vw;
+  }
+  .button-play-button,
+  .button-about-button,
+  .button-how-to-play-button {
+    font-size: 1rem;
+    max-width: 200px;
+  }
+
+  .floating-box {
+    width: clamp(25px, 10vw, 60px);
+    height: clamp(25px, 10vw, 60px);
+    font-size: clamp(12px, 5vw, 30px);
+  }
+
+
+  .floating-ll-right {right: 18%; }
+
+} 
+
+@media (max-width: 480px) {
+  .title-container {
+    font-size: 20vw !important;
+  }
+  
+  .button-container {
+    gap: 0.5rem;
+  }
+  
+  .button-play-button,
+  .button-about-button,
+  .button-how-to-play-button {
+    padding: 0.6rem;
+    margin: 0.4rem;
+    max-width: 180px;
+  }
+  
+  .floating-box {
+    width: clamp(20px, 12vw, 40px);
+    height: clamp(20px, 12vw, 40px);
+    font-size: clamp(10px, 6vw, 20px);
+  }
+  
+  // /* Adjusted positions for small screens */
+  // .floating-l-left { top: 12%; left: 8%; }
+  // .floating-b-left { top: 15%; left: 25%; }
+  // .floating-k-left { top: 30%; left: 10%; }
+  // .floating-bb-left { top: 45%; left: 15%; }
+  // .floating-h-left { top: 55%; left: 5%; }
+  // .floating-g-left { top: 65%; left: 22%; }
+  // .floating-l-right { top: 12%; right: 8%; left: auto; }
+  // .floating-ll-right { top: 25%; right: 20%; left: auto; }
+  // .floating-d-right { top: 32%; right: 5%; left: auto; }
+  // .floating-f-right { top: 48%; right: 12%; left: auto; }
+  // .floating-o-right { top: 55%; right: 15%; left: auto; }
+  // .floating-k-right { top: 70%; right: 10%; left: auto; }
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .button-play-button,
+  .button-about-button,
+  .button-how-to-play-button {
+    font-size: 0.9rem;
+    padding: 0.75rem;
+    max-width: 180px;
+  }
+  
+
+  // .floating-l-left { top: 10%; left: 10%; }
+  // .floating-b-left { top: 18%; left: 28%; }
+  // .floating-k-left { top: 32%; left: -5%; }
+  // .floating-bb-left { top: 48%; left: 2%; }
+  // .floating-h-left { top: 58%; left: 8%; }
+  // .floating-g-left { top: 68%; left: 5%; }
+  // .floating-l-right { top: 15%; right: 12%; left: auto; }
+  // .floating-ll-right { top: 28%; right: 0%; left: auto; }
+  // .floating-d-right { top: 35%; right: -5%; left: auto; }
+  // .floating-f-right { top: 52%; right: 5%; left: auto; }
+  // .floating-o-right { top: 60%; right: -1%; left: auto; }
+  // .floating-k-right { top: 72%; right: 7%; left: auto; }
+}
+
+::ng-deep .swal-custom-title {
+  font-size: clamp(30px, 5vw, 50px) !important;
+  font-weight: bold;
+  color: #BB3E03; 
+}
+::ng-deep .swal-custom-text {
+  font-size: clamp(14px, 3vw, 20px) !important;
+}

@@ -1,0 +1,680 @@
+:host {
+  display: block;
+  background-color: #FFE2AD;
+  min-height: 100vh;
+
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  touch-action: none; /* I-disable ang touch scroll sa overlay */
+
+}
+
+.modal-content {
+  align-items: center;
+  background: white;
+  padding: clamp(2%, 4%, 20px);
+  border-radius: 30px;
+  width: 95%;
+  max-width: 900px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  margin: auto;
+  display: flex;
+  transition: transform 0.25s ease-in-out; 
+  flex-direction: column;
+}
+
+@keyframes slowScale {
+  0% {
+    transform: scale(1.05);
+  }
+}
+.modal-content.scaling {
+  animation: slowScale 0.25s ease-in-out; 
+}
+.modal-header, .modal-content > h3 {
+
+  font-size: clamp(26px, 5vw, 34px);
+  margin-bottom: 10px;
+  line-height: 1.2;
+  font-family: 'Lilita One';
+  color: #AE2012;
+  text-decoration: underline;
+}
+
+
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  width: 100%;
+}
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: black;
+  gap: 16px;
+  border: none;
+  padding: clamp(10px, 1.5vw, 10px);
+  font-size: clamp(14px, 2vw, 20px);
+  border-radius: 5px;
+  transition: all 0.3s ease-in-out;
+  margin: clamp(5px, 1.5vw, 10px) auto;
+  letter-spacing: 1px;
+  line-height: 1.2;
+  width: 100%;
+}
+
+/* Media query for screens 425px and below */
+@media screen and (max-width: 425px) {
+  li {
+    padding: 0; /* Remove padding on small screens */
+    font-size: clamp(12px, 2vw, 16px); /* Adjust font size for small screens */
+    margin: clamp(3px, 1.5vw, 8px) auto; /* Adjust margin for small screens */
+  }
+
+  .modal-header,
+  .modal-content > h3 {
+    font-size: 16px; /* Adjust font size for modal headers */
+  }
+}
+
+/* Flip card styles */
+.flip-card {
+  background-color: transparent;
+  width: 300%; /* Take up most of the space */
+  height: 70px;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  border-radius: 20px; /* Match your design */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* Match your design */
+}
+
+.flip-card.flipped .flip-card-inner {
+  transform: rotateX(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  justify-content: flex-start; /* Align text to the left */
+  align-items: center;
+  border-radius: 10px;
+  padding: clamp(10px, 1.5vw, 20px);
+  font-size: clamp(14px, 2vw, 20px);
+  color: white;
+  letter-spacing: 1px;
+  line-height: 1.2;
+}
+
+.flip-card-front {
+  background: #AE2012; /* Default front color */
+}
+
+.flip-card-back {
+  background: #AE2012; /* Default back color */
+  transform: rotateX(180deg);
+}
+
+/* Apply background colors based on position */
+li:nth-child(1) .flip-card-front,
+li:nth-child(1) .flip-card-back {
+  background: #AE2012;
+}
+
+li:nth-child(2) .flip-card-front,
+li:nth-child(2) .flip-card-back {
+  background: #bb3303;
+}
+
+li:nth-child(3) .flip-card-front,
+li:nth-child(3) .flip-card-back {
+  background: #ca6702;
+}
+
+li:nth-child(4) .flip-card-front,
+li:nth-child(4) .flip-card-back {
+  background: #ee9b00;
+}
+
+
+.answer-text {
+  flex: 1;
+  text-align: left;
+  padding: 20px;
+  border-radius: 20px;
+  color: white;
+  text-align: center;
+  font-family: "Lilita One";
+  
+}
+.flip-card-back .answer-text {
+  font-size: 20px;
+}
+
+.answer-clicks {
+  text-align: right;
+  font-weight: bold;
+  padding-left: 10px;
+  background: transparent; 
+  color: #AE2012; 
+  width: 20%; 
+  font-size: 36px;
+}
+.answer-box {
+  background-color: transparent;
+  width: 100%;
+  max-width: 800px;
+  height: 90px;
+  perspective: 1000px;
+  cursor: pointer;
+  margin: clamp(5px, 1vw, 10px) auto;
+}
+
+.answer-box-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  border-radius: 30px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.answer-box.flipped .answer-box-inner {
+  transform: rotateX(180deg);
+}
+
+.answer-box-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 30px;
+  padding: clamp(5px, 1vw, 10px);
+  font-size: clamp(16px, 2.2vw, 20px);
+  font-family: "Lilita One";
+  letter-spacing: 1px;
+  line-height: 1.2;
+  color: #AE2012;
+  border: 5px solid #AE2012;
+}
+
+.answer-box-front {
+  background: white;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 30px;
+  padding: clamp(5px, 1vw, 10px);
+  font-size: clamp(48px, 2.2vw, 23px);
+  font-family: "Lilita One";
+  letter-spacing: 1px;
+  line-height: 1.2;
+  color: #AE2012;
+  border: 5px solid #AE2012;
+}
+
+/* Mobile Responsive Styles (769px and below) */
+@media (max-width: 769px) {
+  .answer-box {
+    height: 70px; /* Reduce height for smaller screens */
+    margin: clamp(3px, 1vw, 8px) auto; /* Adjust margin */
+  }
+
+  .answer-box-back,
+  .answer-box-front {
+    font-size: clamp(14px, 2.2vw, 18px); /* Reduce font size for smaller screens */
+    padding: clamp(3px, 1vw, 8px); /* Adjust padding */
+    border-width: 3px; /* Reduce border thickness */
+  }
+
+  .answer-box-front {
+    font-size: clamp(24px, 2.2vw, 20px); /* Adjust front font size */
+  }
+}
+
+@media  screen and (max-width: 400px) {
+  .answer-text{
+    font-size: smaller;
+    padding: 0px;
+  }
+}
+.answer-box-back {
+  background: white;
+  transform: rotateX(180deg);
+}
+.modal-buttons {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+
+  width: 100%;
+}
+
+.next-button, .close-button {
+  width: 100%;
+  max-width: 300px;
+  padding: clamp(8px, 2vw, 16px);
+  border: none;
+  border-radius: 30px;
+  font-size: clamp(12px, 2vw, 20px);
+  cursor: pointer;
+  text-align: center;
+  display: block;
+}
+
+.next-button { background: #bb3303; color: white; }
+.close-button { background: #bb3303; color: white; }
+
+.next-button:hover {  
+  background: #AE2012;
+}
+
+.close-button:hover {
+  background: #AE2012;
+}
+
+.quiz-container {
+  margin: auto;
+  text-align: left;
+  padding-top: 150px;
+  border-radius: 20px;
+
+}
+
+.letters {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-auto-rows: 1fr;
+  justify-items: center;
+  align-items: center;
+  pointer-events: none;
+  opacity: 0.1;
+  font-size: 100px;
+  font-weight: 900;
+  font-family: 'Itim', cursive;
+  color: rgb(0, 18, 25);
+  z-index: 0;
+}
+
+.back-button {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  width: 100px;
+  height: 50px;
+  padding: 10px 20px;
+  background-color: transparent;
+  border: none;
+  color: #BB3E03;
+  font-family: 'Passion One', sans-serif;
+  font-weight: 600;
+  font-size: 70px;
+  cursor: pointer;
+  border-radius: 15px;
+  z-index: 10;
+  transition: transform 0.3s ease;
+}
+
+.back-button:hover {
+  transform: scale(1.30);
+}
+
+.category-title {
+  font-family: 'Lilita One';
+  font-size: 50px;
+  font-weight: 900;
+  margin-bottom: 10px;
+  color: #BB3E03;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 20px;
+  padding-left: 150px;
+  text-align: left;
+  margin-left: 0;
+}
+
+.question-title {
+  padding-top: 30px;
+  font-family: 'Lilita One';
+  font-size: 40px;
+  font-weight: 900;
+  margin-bottom: 5px;
+  color: #BB3E03;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding-left: 150px;
+  text-align: left;
+  margin-left: 0;
+
+}
+
+.question-text {
+  padding-top: 60px;
+  font-family: 'Lilita One';
+  font-size: 40px;
+  margin-bottom: 10px;
+  color: #BB3E03;
+  letter-spacing: 1px;
+  text-decoration-thickness: 1px;
+  line-height: 1;
+  padding-left: 5%;
+  text-align: left;
+  margin-left: 0;
+  z-index: 1 !important;
+}
+
+.answer-options {
+  padding-top: 130px;
+  display: grid;
+  grid-template-columns: repeat(2, 0.3fr);
+  gap: 10px;
+  justify-content: center;
+  z-index: 1;
+}
+
+.answer-button {
+  position: relative;
+  background: #AE2012;
+  width: 500px;
+  height: 120px;
+  color: white;
+  border: none;
+  font-size: 25px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  z-index: 5;
+  margin: 10px auto;
+  letter-spacing: 1.5px;
+  line-height: 1.2;
+}
+
+.answer-button:hover {
+  background: #8d030e;
+  transform: scale(1.05);
+}
+
+.user-selected {
+
+  animation: zoomInOut 2.2s ease-in-out infinite; 
+}
+@keyframes zoomInOut {
+  0% {
+    transform: scale(1); /* Normal size */
+  }
+  50% {
+    transform: scale(1.05); /* Zoom in */
+  }
+  100% {
+    transform: scale(1); /* Zoom out */
+  }
+}
+.user-selected:hover {
+  animation-play-state: paused; /* Pause animation on hover */
+}
+.user-selected.infinite {
+  animation: zoomInOut 0.2s ease-in-out infinite;
+}
+
+
+.answer-button.incorrect {
+  background: #E63946 !important;
+}
+
+
+.feedback {
+  margin-top: 30px;
+  text-align: center;
+  z-index: 15;
+  position: relative;
+}
+
+.correct-text {
+  color: #38B000;
+  font-weight: bold;
+}
+
+.incorrect-text {
+  color: #E63946;
+  font-weight: bold;
+}
+
+.feedback-actions {
+  margin-top: 20px;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  z-index: 20;
+  position: relative;
+}
+
+.btn-primary {
+  background: #38B000;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-primary:hover {
+  background: #2D6A4F;
+}
+
+.btn-secondary {
+  background: #FF6F61;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-secondary:hover {
+  background: #E63946;
+}
+
+.alert {
+  background: #FFD166;
+  padding: 15px;
+  border-radius: 10px;
+  font-weight: bold;
+  color: #3B3B3B;
+  margin-top: 20px;
+  z-index: 15;
+  position: relative;
+}
+
+
+@media  (max-width: 1024px) {
+  .quiz-container {
+    padding-top: 100px;
+  }
+
+  .letters {
+    font-size: 80px;
+  }
+
+  .back-button {
+    top: 30px;
+    left: 30px;
+    font-size: 60px;
+  }
+
+  .category-title {
+    font-size: 35px;
+    padding-left: 100px;
+  }
+
+  .question-title {
+    font-size: 25px;
+    padding-left: 100px;
+    z-index: 10;
+  }
+
+  .question-text {
+    font-size: 35px;
+    padding-left: 50px;
+    z-index: 10 !important;
+  }
+
+  .answer-options {
+    padding-top: 100px;
+  }
+
+  .answer-button {
+    width: 400px;
+    font-size: 22px;
+  }
+
+
+}
+
+@media screen and (max-width: 768px) {
+  .quiz-container {
+    padding-top: 80px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 100px;
+  }
+
+  .letters {
+    font-size: 60px;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .back-button {
+    top: 20px;
+    left: 20px;
+    font-size: 50px;
+    width: 80px;
+    height: 40px;
+  }
+
+  .category-title {
+    font-size: 28px;
+    padding-left: 20px;
+    text-align: center;
+  }
+
+  .question-title {
+    font-size: 22px;
+    padding-left: 20px;
+    text-align: center;
+    z-index: 10;
+  }
+
+  .question-text {
+    font-size: 28px;
+    padding-left: 20px;
+    text-align: center;
+
+    z-index: 10;
+  }
+
+  .answer-options {
+    padding-top: 60px;
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .answer-button {
+    width: 90%;
+    height: 80px;
+    font-size: 18px;
+    margin: 5px auto;
+  }
+
+  .feedback-actions {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    width: 80%;
+  }
+}
+
+
+@media screen and (max-width: 480px) {
+  .category-title {
+    font-size: 24px;
+  }
+
+  .question-title {
+    font-size: 20px;
+    z-index: 10;
+  }
+
+  .question-text {
+    font-size: 24px;
+    z-index: 10;
+	padding-right: 0px;
+  }
+
+  .answer-button {
+    font-size: 12px;
+  }
+
+  .back-button{
+
+    top: 20px;
+    left: 20px;
+    font-size: 50px;
+    width: 80px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 375px) {
+  .question-text {
+    padding-top: 0px;
+  }
+
+}

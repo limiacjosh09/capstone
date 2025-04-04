@@ -1,0 +1,46 @@
+<div class="how-to-play-container">
+  <div class="letters">
+    <span *ngFor="let letter of letters">{{ letter }}</span>
+  </div>
+
+    <button class="back-button" (click)="closePage()">
+      <i class="fas fa-circle-chevron-left"></i>
+    </button>
+    <h1 class="title">How to Play?</h1>
+    <div class="steps">
+      <div class="step step-1">
+        <h2>STEP #1</h2>
+        <br>
+        <p>If "Yes" is selected, the user has access to both the Best Response Game and Review Flipcards.</p>
+        <br>
+        <br>
+        <br>
+        <br>
+        <p>If "No" is selected, only Review Flipcards with Basic Words will be accessible.</p>
+      </div>
+      <div class="step step-2">
+        <h2>STEP #2</h2>
+        <br>
+        <p>If "Yes" is selected, the user must choose which mode to play.        </p>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <p>If "No" is selected, only Review Flipcards with Basic Words will be accessible.        </p>
+      </div>
+      <div class="step step-3">
+        <h2>STEP #3</h2>
+        <br>
+        <p>If "Yes" is selected and the Best Response Game is chosen, the user will answer a given scenario, see how others responded, and learn the appropriate answer.
+          If the user chooses Review Flipcards, they can read and become familiar with the words used in the scenarios.</p>
+        <br>
+        <br>
+        <p>If you selected Review Flip Cards: Now you can read and be familiar with the Kapampangan words that you still don't know.</p>
+      </div>
+    </div>
+    <button class="play-button"(click)="playPage()">Play</button>
+  </div>
+  

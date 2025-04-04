@@ -1,0 +1,47 @@
+<div class="background my-custom-background"></div>
+<button (click)="goBack()" class="btn-secondary">
+  <i class="fas fa-circle-chevron-left"></i>
+</button>
+<div class="container">
+  <div class="letters">
+    <span *ngFor="let letter of letters">{{ letter }}</span>
+  </div>
+  <div class="row mb-4">
+    <div class="col"></div>
+  </div>
+  <h2 class="mb-4"  style="cursor: default;" >Select a Scenario</h2>
+  <div class="row g-4">
+    <div class="col-md-4" *ngFor="let level of levels">
+      <!-- Wrap the button in a span and move the tooltip here -->
+      <span [matTooltip]="level.completed ? 'Answer will not be counted' : 'Click to answer'" 
+            matTooltipClass="custom-tooltip" 
+            style="display: inline-block; position: relative; z-index: 10;">
+        <button (click)="selectLevel(level.id)" 
+                class="btn"
+                [ngClass]="{'completed': level.completed}"
+               >
+          {{ level.name }}
+        </button>
+      </span>
+    </div>
+  </div>
+  <div class="floating" style="visibility: hidden;">
+    <div class="floating-left">
+      <div class="floating-box floating-l-left">L</div>
+      <div class="floating-box floating-b-left">J</div>
+      <div class="floating-box floating-k-left">F</div>
+      <div class="floating-box floating-bb-left">E</div>
+      <div class="floating-box floating-h-left">G</div>
+      <div class="floating-box floating-g-left">L</div>
+    </div>
+
+    <div class="floating-right">
+      <div class="floating-box floating-l-right">R</div>
+      <div class="floating-box floating-ll-right">R</div>
+      <div class="floating-box floating-d-right">M</div>
+      <div class="floating-box floating-f-right">J</div>
+      <div class="floating-box floating-o-right">E</div>
+      <div class="floating-box floating-k-right">M</div>
+    </div>
+  </div> 
+</div>

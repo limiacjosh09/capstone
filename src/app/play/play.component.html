@@ -1,0 +1,69 @@
+
+<button class="back-button" (click)="closePage()">
+  <i class="fas fa-circle-chevron-left"></i> 
+</button>
+<div class="select-mode-container">
+  <div class="letters">
+    <span *ngFor="let letter of letters">{{ letter }}</span>
+  </div>
+    
+    
+    <div class="title" *ngIf="!isMobile"  style="cursor: default;">SELECT A MODE</div>
+    
+    <div class="modes">
+      <!-- Best Response Section -->
+      <div class="mode" (mouseenter)="showTooltip = true" (mouseleave)="showTooltip = false"  (click)="categoryPage()">
+        <!-- <h3>Game Mode:</h3> -->
+        <h2 style="margin-top: 20px;">BEST RESPONSE</h2>
+        <div class="options">
+          <button class="bg1" (click)="goToLevels(1)" 
+            (mouseenter)="showCustomTooltip(1, $event)" 
+            (mouseleave)="hideCustomTooltip()">
+            <span class="custom-tooltip" *ngIf="activeTooltip === 1">Click to go to "School" Category</span>
+          </button>
+        
+          <button class="bg2" (click)="goToLevels(2)" 
+            (mouseenter)="showCustomTooltip(2, $event)" 
+            (mouseleave)="hideCustomTooltip()">
+            <span class="custom-tooltip" *ngIf="activeTooltip === 2">Click to go to "Home" Category</span>
+          </button>
+        
+          <button class="bg3" (click)="goToLevels(3)" 
+            (mouseenter)="showCustomTooltip(3, $event)" 
+            (mouseleave)="hideCustomTooltip()">
+            <span class="custom-tooltip" *ngIf="activeTooltip === 3">Click to go to "Public Places" Category</span>
+          </button>
+        
+          <button class="bg4" (click)="goToLevels(4)" 
+            (mouseenter)="showCustomTooltip(4, $event)" 
+            (mouseleave)="hideCustomTooltip()">
+            <span class="custom-tooltip" *ngIf="activeTooltip === 4">Click to go to "Conversation with Elders" Category</span>
+          </button>
+        
+          <button class="bg5" (click)="goToLevels(5)" 
+            (mouseenter)="showCustomTooltip(5, $event)" 
+            (mouseleave)="hideCustomTooltip()">
+            <span class="custom-tooltip" *ngIf="activeTooltip === 5">Click to go to "Workplace" Category</span>
+          </button>
+        </div>
+        
+        <div class="mode-tooltip" *ngIf="showTooltip">
+          Click to select a category
+        </div>
+      </div>
+  
+    
+      
+ 
+      <div class="modess" (click)="playFlipcards()">
+        <!-- <h3>Review:</h3> -->
+        <h2 style="margin-top: 20px;">FLIP CARDS</h2>
+        <div class="modess-tooltip">Click to play Flip Cards</div>
+        <div class="flip-cards">
+
+          <div class="card" *ngFor="let card of cards">?</div>
+        </div>
+        
+      </div>
+    </div>
+  </div>

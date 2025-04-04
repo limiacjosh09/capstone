@@ -1,0 +1,24 @@
+<div class="how-to-play-container">
+  <div class="letters">
+    <span *ngFor="let letter of letters">{{ letter }}</span>
+  </div>
+
+  <button class="back-button" (click)="closePage()">
+    <i class="fas fa-circle-chevron-left"></i>
+  </button>
+  <h1 class="title">How to Play?</h1>
+  <div class="steps-container">
+    <div class="steps">
+      <div class="step step-1">
+        <h2>STEP #1 <br>(KNOWLEDGE OF KAPAMPANGAN VOCABULARY)</h2>
+        <p>If "Yes" is selected, you will have access to the SELECT MODE Screen. Otherwise, only REVIEW FLIPCARDS with basic Kapampangan words/phrases translation will be accessible.</p>
+      </div>
+      <div class="step step-2">
+        <h2>STEP #2 (SELECT A MODE)</h2>
+        <p>If BEST RESPONSE is chosen, you will answer a given scenario based on a category, see how others responded, and learn the most appropriate answer.</p>
+        <p>If REVIEW FLIPCARDS is selected, you can familiarize yourself with the Kapampangan words/phrases translation used in the scenarios that you still don't know.</p>
+      </div>
+    </div>
+  </div>
+  <button class="play-button" (click)="playPage()">Play</button>
+</div>

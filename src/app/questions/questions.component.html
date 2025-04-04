@@ -1,0 +1,76 @@
+<div class="quiz-container">
+  <!-- Letters Display -->
+  <div class="letters" style="display: none;">
+    <span *ngFor="let letter of letters">{{ letter }}</span>
+  </div>
+
+  <!-- Back Button -->
+  <button class="back-button" (click)="goBack()">
+    <i class="fas fa-circle-chevron-left"></i>
+  </button>
+
+  <!-- Category & Level Titles -->
+  <h1 class="category-title"  style="cursor: default;">Category: {{ categoryName }}</h1>
+  <h2 class="question-title"  style="cursor: default;">{{ levelName }}</h2>
+
+  <!-- Questions Section -->
+  <div *ngIf="questions.length > 0">
+    <p class="question-text"  style="cursor: default;">
+      {{ questions[currentQuestionIndex].question_text }}
+    </p>
+
+    <!-- Answer Options -->
+    <div class="answer-options" >
+      <button
+        *ngFor="let answer of questions[currentQuestionIndex].answers"
+        (click)="onAnswerClick(answer.id)"
+        class="answer-button"
+        [class.correct]="showModal && answer.is_correct"
+        [class.incorrect]="showModal && !answer.is_correct && selectedAnswer === answer.id"
+        [disabled]="isDisabled" >
+        {{ answer.answer_text }}
+      </button>
+    </div>
+  </div>
+
+  <!-- Modal for Top Answers and Appropriate Answer -->
+  <div *ngIf="showModal" class="modal-overlay">
+    <div class="modal-content" [ngClass]="{ 'scaling': isModalScaling }">
+      <!-- Top Answers Section -->
+      <h3 class="modal-header">TOP ANSWERS</h3>
+      <ul>
+        <li *ngFor="let answer of tallyResults">
+          <!-- Flip Card -->
+          <div class="flip-card" style="cursor: default;"  >
+            <div class="flip-card-inner">
+              <div class="flip-card-front"  [ngClass]="{ 'user-selected': selectedAnswerId === answer.id }">
+                <div class="answer-text">{{ answer.answer_text }}</div>
+              </div>
+            </div>
+          </div>
+          <!-- Answer Clicks -->
+          <div class="answer-clicks" matTooltip="Number of votes" style="cursor: default;">{{ answer.clicks }}</div>
+        </li>
+      </ul>
+
+      <!-- Appropriate Answer Section -->
+      <div class="modal-header">APPROPRIATE ANSWER FROM EXPERTS (MOST POLITE)</div>
+      <div class="answer-box" [class.flipped]="isAnswerRevealed" (click)="revealAnswer()" matTooltip="Click to flip">
+        <div class="answer-box-inner">
+          <div class="answer-box-front">
+            <span>?</span>
+          </div>
+          <div class="answer-box-back">
+            {{ correctAnswer }}
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal Buttons -->
+      <div class="modal-buttons">
+        <button (click)="goToNextLevel()" *ngIf="!isLastLevel" class="next-button">Next Scenario</button>
+        <button (click)="goBack()" class="close-button">Back to Scenarios</button>
+      </div>
+    </div>
+  </div>
+</div>
